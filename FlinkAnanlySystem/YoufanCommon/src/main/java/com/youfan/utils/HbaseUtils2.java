@@ -40,6 +40,12 @@ public class HbaseUtils2 {
         HColumnDescriptor colDesc = new HColumnDescriptor(famliyname);
         tab.addFamily(colDesc);
         // 创建表
+
+
+
+
+
+
         admin.createTable(tab);
         System.out.println("over");
     }
