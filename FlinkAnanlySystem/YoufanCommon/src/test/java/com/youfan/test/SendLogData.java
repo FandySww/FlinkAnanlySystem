@@ -26,6 +26,7 @@ public class SendLogData {
             urlConnection.setInstanceFollowRedirects(true);
             urlConnection.setUseCaches(true);
             urlConnection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:26.0) Gecko/20100101 Firefox/26.0");
+            // 数据类型是json的
             urlConnection.setRequestProperty("Content-Type", "application/json");
             urlConnection.setConnectTimeout(1000 * 5);
             urlConnection.connect();

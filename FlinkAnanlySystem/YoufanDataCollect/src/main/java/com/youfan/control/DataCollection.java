@@ -33,38 +33,41 @@ public class DataCollection {
 
     @RequestMapping(method = RequestMethod.POST,value = "dataCollect")
     public void dataCollect(@RequestBody  String data){
-        if(StringUtils.isNotBlank(data)){
-            JSONObject jsonObject = JSONObject.parseObject(data);
-            String deviceType = jsonObject.getString("deviceType");
-            ScanPageLog scanPageLog = JSONObject.parseObject(data,ScanPageLog.class);
-            String deviceComomInfo = jsonObject.getString("deviceComomInfo");
-            //0、app端 1、pc端 2、小程序端
-            if("0".equals(deviceType)){
-                System.out.println("进入app端");
-                AppInfo appinfo = JSONObject.parseObject(deviceComomInfo, AppInfo.class);
-                UserStatus.filterNewStatus(appinfo);
-                UserStatus.filterActiveStatus(appinfo);
-                scanPageLog.setDeviceComomInfo(appinfo);
-            }else if("1".equals(deviceType)){
-                System.out.println("进入pc端");
-                PcInfo pcInfo = JSONObject.parseObject(deviceComomInfo, PcInfo.class);
-                UserStatus.filterNewStatus(pcInfo);
-                UserStatus.filterActiveStatus(pcInfo);
-                scanPageLog.setDeviceComomInfo(pcInfo);
-            }else if("2".equals(deviceType)){
-                System.out.println("进入小程序端");
-                XiaochengxuInfo xiaochengxuInfo = JSONObject.parseObject(deviceComomInfo, XiaochengxuInfo.class);
-                UserStatus.filterNewStatus(xiaochengxuInfo);
-                UserStatus.filterActiveStatus(xiaochengxuInfo);
-                scanPageLog.setDeviceComomInfo(xiaochengxuInfo);
-            }
-            String scanPageLogString = JSONObject.toJSONString(scanPageLog);
-            System.out.println(scanPageLogString);
-            kafkaTemplate.send("datainfo", scanPageLogString);
-        }
+//        if(StringUtils.isNotBlank(data)){
+//            JSONObject jsonObject = JSONObject.parseObject(data);
+//            String deviceType = jsonObject.getString("deviceType");
+//            ScanPageLog scanPageLog = JSONObject.parseObject(data,ScanPageLog.class);
+//            String deviceComomInfo = jsonObject.getString("deviceComomInfo");
+//            //0、app端 1、pc端 2、小程序端
+//            if("0".equals(deviceType)){
+//                System.out.println("进入app端");
+//                AppInfo appinfo = JSONObject.parseObject(deviceComomInfo, AppInfo.class);
+//                UserStatus.filterNewStatus(appinfo);
+//                UserStatus.filterActiveStatus(appinfo);
+//                scanPageLog.setDeviceComomInfo(appinfo);
+//            }else if("1".equals(deviceType)){
+//                System.out.println("进入pc端");
+//                PcInfo pcInfo = JSONObject.parseObject(deviceComomInfo, PcInfo.class);
+//                UserStatus.filterNewStatus(pcInfo);
+//                UserStatus.filterActiveStatus(pcInfo);
+//                scanPageLog.setDeviceComomInfo(pcInfo);
+//            }else if("2".equals(deviceType)){
+//                System.out.println("进入小程序端");
+//                XiaochengxuInfo xiaochengxuInfo = JSONObject.parseObject(deviceComomInfo, XiaochengxuInfo.class);
+//                UserStatus.filterNewStatus(xiaochengxuInfo);
+//                UserStatus.filterActiveStatus(xiaochengxuInfo);
+//                scanPageLog.setDeviceComomInfo(xiaochengxuInfo);
+//            }
+//            String scanPageLogString = JSONObject.toJSONString(scanPageLog);
+//            System.out.println(scanPageLogString);
+//            kafkaTemplate.send("datainfo", scanPageLogString);
+              kafkaTemplate.send("datainfo", "123");
+              System.out.println("success");
+//        }
 
 
     }
+
 
 
 }
