@@ -10,7 +10,7 @@ import java.sql.ResultSet;
  */
 public class Test2 {
     public static void main(String[] args) throws Exception {
-        String address = "jdbc:clickhouse://192.168.246.152:8123/test";
+        String address = "jdbc:clickhouse://192.168.244.133:8123/default";
         Class.forName("ru.yandex.clickhouse.ClickHouseDriver");
         Connection connection  = DriverManager.getConnection(address);
         String sql = "select * from youfantest;";
@@ -21,7 +21,7 @@ public class Test2 {
             int id = resultSet.getInt(1);
             String name = resultSet.getString(2);
             String date = resultSet.getString(3);
-            System.out.println(id +"=="+name+"=="+date);
+            System.out.println(id +"__"+name+"__"+date);
         }
     }
 }

@@ -16,11 +16,11 @@ public class HbaseUtils2 {
     static{
         // 创建hbase配置对象
         Configuration conf = HBaseConfiguration.create();
-        conf.set("hbase.rootdir","hdfs://192.168.246.152:9000/hbase");
+//        conf.set("hbase.rootdir","hdfs://192.168.244.134:9008/hbase");
         //使用eclipse时必须添加这个，否则无法定位
-        conf.set("hbase.zookeeper.quorum","192.168.246.152");
-        conf.set("hbase.client.scanner.timeout.period", "600000");
-        conf.set("hbase.rpc.timeout", "600000");
+        conf.set("hbase.zookeeper.quorum","192.168.244.134");
+        conf.set("hbase.client.scanner.timeout.period", "6000");
+        conf.set("hbase.rpc.timeout", "6000");
         try {
             conn = ConnectionFactory.createConnection(conf);
             // 得到管理程序
@@ -40,12 +40,6 @@ public class HbaseUtils2 {
         HColumnDescriptor colDesc = new HColumnDescriptor(famliyname);
         tab.addFamily(colDesc);
         // 创建表
-
-
-
-
-
-
         admin.createTable(tab);
         System.out.println("over");
     }

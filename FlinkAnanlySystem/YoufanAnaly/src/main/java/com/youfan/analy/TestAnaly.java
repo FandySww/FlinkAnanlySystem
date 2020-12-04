@@ -13,19 +13,15 @@ import java.util.Properties;
 public class TestAnaly {
     public static void main(String[] args) {
         final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-
         Properties properties = new Properties();
-        properties.setProperty("bootstrap.servers", "192.168.246.152:9092");
+        properties.setProperty("bootstrap.servers", "192.168.244.133:9092");
         properties.setProperty("group.id", "youfantest");
         //构建FlinkKafkaConsumer
         FlinkKafkaConsumer<String> myConsumer = new FlinkKafkaConsumer<>("datainfo", new SimpleStringSchema(), properties);
 //        //指定偏移量
 //        myConsumer.setStartFromEarliest();
-
-
         DataStream<String> stream = env
                 .addSource(myConsumer);
-
         env.enableCheckpointing(5000);
         stream.print();
         try {
